@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +25,8 @@ Route::get('/test', function(){
 Route::post('/usuario/{nombre}',function($nombre){
     return "Hola $nombre";
 } );
+
+Route::group(['prefix' => 'v1','namespace'=>'App\Http\Controllers'],function(){
+    Route::apiResource('customers',CustomerController::class);
+    Route::apiResource('invoices',InvoiceController::class);
+});
